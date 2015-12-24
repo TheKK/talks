@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>How can you turn this on?</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/blood.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+   <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement( 'link' );
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+     document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+         <script src="lib/js/html5shiv.js"></script>
+         <![endif]-->
+    <style>
+     b {
+       color: #c106ce
+     }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h2>Internship final presentation</h2>
+          <mid>Ying-Ruei Liang / <a href="https://twitter.com/kk_the_gamer">@kk_the_gamer</a></mid>
+
+					<aside class="notes">
+            Nothing to talk
+					</aside>
+        </section>
+
+        <section>
+          <h2>Who am I</h2>
+          <ul>
+            <li>Ying-Ruei Liang (KK)</li>
+            <li>Connected device team</li>
+            <li>Work on gamming related project</li>
+          </ul>
+
+					<aside class="notes">
+            Just say something and don't wet you pants
+					</aside>
+        </section>
+
+        <section>
+          <h2>Outline</h2>
+          <small>/* Basically I'll focus on what I've worked on */</small>
+          <br>
+          <ul>
+            <li>serious part</li>
+            <li>kind of serious part</li>
+            <li>totally not serious part</li>
+            <li>conclusions</li>
+          </ul>
+
+					<aside class="notes">
+            hmmm
+					</aside>
+        </section>
+
+        <section>
+          <h1>Serious part</h1>
+        </section>
+
+        <section>
+          <h3>First</h3>
+          <p>
+            Backend for <b>game profiling</b> devtool
+          </p>
+        </section>
+
+        <section>
+          <h3>What a game developer want to know?</h3>
+          <ul class="fragment">
+            <li>CPU V.S GPU time</li>
+            <li>draw calls used in single frame</li>
+            <li>WebGL resources usage and state</li>
+          </ul>
+
+					<aside class="notes">
+            CPU/GPU time could tell us where's the bottleneck.
+            <hr>
+            draw call may be redundant
+            <hr>
+            WebGL, know if things works as we expect
+					</aside>
+        </section>
+
+        <section>
+          <h3>Actually</h3>
+          <p>
+            we can already achieve some of them now
+          </p>
+          <hr>
+          <p>
+            "CPU V.S GPU time" >> <b>performance debugger</b>
+          </p>
+          <p>
+            "draw calls used in single frame" >> <b>canvas debugger</b>
+          </p>
+          <p>
+            "WebGL resources usage and state" >> <b>shader debugger</b>
+          </p>
+          <p>
+            >> <b>memory debugger</b>
+          </p>
+        </section>
+
+        <section>
+          <h3>But they are separated functionaries</h3>
+          <p>
+            We want to combine and improve them
+          </p>
+
+					<aside class="notes">
+            we want to combine these, so we can do something like checking texture from
+            draw calls snapshot directly
+          </aside>
+        </section>
+
+        <section>
+          <h3>The part I worked on</h3>
+          <p>
+            Record WebGL resource (textures, buffers)
+          </p>
+
+					<aside class="notes">
+            Texture:
+            <br>
+            what used in frames? its info?
+            <hr>
+            Buffers:
+            data? type? total size?
+            <br>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Demo time</h3>
+
+					<aside class="notes">
+            Show the part I've worked on
+          </aside>
+        </section>
+
+        <section>
+          <h3>Challenges I faced</h3>
+
+          <ul class="fragment">
+            <li>JavaScript</li>
+            <li>RDP (Remote Debugger Protocol)</li>
+            <li>Special environment (chrome code and context code)</li>
+            <li>Debugging devtools</li>
+          </ul>
+
+					<aside class="notes">
+            JavaScript: I'm new, event callback, "this",xrayed
+            <hr><br>
+            RDP: debug all gecko platform, serialize
+            <hr><br>
+            Spe: xrayed, copyTo
+            <hr><br>
+            TDD is useful: mochitest
+          </aside>
+        </section>
+
+        <section data-background="internFinal/callbacksEverywhere.png">
+          <h3>JavaScript</h3>
+          <img src="internFinal/callbacksEverywhere.png" alt="promise is better"/>
+        </section>
+
+        <section>
+          <h3>Remote Debugger Protocol</h3>
+          <img src="internFinal/rdp.png" width="80%"/>
+          <p class="fragment">It's <b>client/server</b> architecture!</p>
+        </section>
+
+        <section>
+          <h4>Server</h4>
+          <img src="internFinal/rdp_server.png" />
+          <h4>Client</h4>
+          <img src="internFinal/rdp_client.png" />
+
+          <aside class="notes">
+            webIDE
+          </aside>
+        </section>
+
+        <section>
+          <h3>Client interacts with <b>actors</b> on the server</h3>
+          <br>
+          <p>What is an <b>actor</b>?</p>
+          <blockquote cite="https://wiki.mozilla.org/Remote_Debugging_Protocol">
+            An actor is something on the server that can exchange
+            JSON packets with the client.
+            <br>
+            ...
+            <br>
+            { "to":actor, "type":type, ... }
+          </blockquote>
+        </section>
+
+        <section>
+          <h3>Demo time</h3>
+
+          <aside class="notes">
+            Try sending "listTabs" to actor "root"
+          </aside>
+        </section>
+
+        <section>
+          <h3>Life should be easier</h3>
+          <p>
+            Hi, I'm <b><a href=""https://mxr.mozilla.org/mozilla-central/source/devtools/server/protocol.js?force=1>protocol.js</a></b>
+            , your best friend!
+          </p>
+          <pre><code class="javascript">
+  var WebGLActor = exports.WebGLActor = protocol.ActorClass({
+    typeName: "webgl",
+  ...
+  setup: method(function({ reload }) {
+    if (this._initialized) {
+      return;
+    }
+    this._initialized = true;
+
+    this._programActorsCache = [];
+    this._webglObserver = new WebGLObserver();
+
+    on(this.tabActor, "window-ready", this._onGlobalCreated);
+    on(this.tabActor, "window-destroyed", this._onGlobalDestroyed);
+    on(this._webglObserver, "program-linked", this._onProgramLinked);
+
+    if (reload) {
+      this.tabActor.window.location.reload();
+    }
+  }, {
+    request: { reload: Option(0, "boolean") },
+    oneway: true
+  }),
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Special running environment</h3>
+          <p>
+            chrome code, xray vision, cloneInto...
+          </p>
+          <p class="fragment">No time to <a href="https://developer.mozilla.org/en-US/docs/Xray_vision">explain</a></p>
+
+          <aside class="notes">
+            The most horrible part is there's has only few documents,
+            so only thing I can do is try and error
+          </aside>
+        </section>
+
+        <section>
+          <h3>Debugging devtools</h3>
+          <p>
+            I really have <b>no idea</b> about this
+          </p>
+
+          <p class="fragment">
+            TDD style, write mochitest first
+          </p>
+          <aside class="notes">
+            You don't know what inside and object
+          </aside>
+        </section>
+
+        <section>
+          <h3>Progress</h3>
+          <small>/* Still work in progress */</small>
+
+					<aside class="notes">
+            functionalities work without problem
+            <br>
+            don't have concrete detail of interface and use case
+          </aside>
+        </section>
+
+        <section>
+          <h1>Kind of serious part</h1>
+        </section>
+
+        <section>
+          <h1>Totally not serious part</h1>
+        </section>
+
+        <section>
+          <h1>Conclusion</h1>
+        </section>
+
+        <section>
+          <h1>Thanks for</h1>
+        </section>
+
+      </div> <!-- <div class="slides"> -->
+
+    </div> <!-- <div class="reveal"> -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+
+       transition: 'fade', // none/fade/slide/convex/concave/zoom
+
+       // Optional reveal.js plugins
+       dependencies: [
+         { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+         { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+         { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+         { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+         { src: 'plugin/zoom-js/zoom.js', async: true },
+         { src: 'plugin/notes/notes.js', async: true }
+       ]
+     });
+
+     Reveal.configure({
+       keyboard: {
+         '76': 'next', // go to the next slide when the ENTER key is pressed
+         '72': 'prev'
+       }
+     });
+    </script>
+
+  </body>
+</html>
