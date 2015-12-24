@@ -34,7 +34,17 @@
          <![endif]-->
     <style>
      b {
-       color: #c106ce
+       color: #e25002;
+
+     }
+
+     iframe {
+			 frameborder: 0 ;
+       marginwidth: 0;
+       marginheight: 0;
+       border: 3px;
+       margin-bottom: 5px;
+       max-width: 100%;
      }
     </style>
   </head>
@@ -47,8 +57,8 @@
       <div class="slides">
 
         <section>
-          <h2>Internship final presentation</h2>
-          <mid>Ying-Ruei Liang / <a href="https://twitter.com/kk_the_gamer">@kk_the_gamer</a></mid>
+          <h2>Intern presentation</h2>
+          <mid>Ying-Ruei Liang / <a targe="_blank" href="https://twitter.com/kk_the_gamer">@kk_the_gamer</a></mid>
 
 					<aside class="notes">
             Nothing to talk
@@ -89,7 +99,7 @@
         </section>
 
         <section>
-          <h3>First</h3>
+          <h2>First</h2>
           <p>
             Backend for <b>game profiling</b> devtool
           </p>
@@ -162,7 +172,7 @@
         </section>
 
         <section>
-          <h3>Demo time</h3>
+          <h2>Demo time</h2>
 
 					<aside class="notes">
             Show the part I've worked on
@@ -227,7 +237,7 @@
         </section>
 
         <section>
-          <h3>Demo time</h3>
+          <h2>Demo time</h2>
 
           <aside class="notes">
             Try sending "listTabs" to actor "root"
@@ -283,14 +293,17 @@
         <section>
           <h3>Debugging devtools</h3>
           <p>
-            I really have <b>no idea</b> about this
+            I still have <b>no idea</b> about this
           </p>
 
           <p class="fragment">
             TDD style, write mochitest first
           </p>
+
           <aside class="notes">
-            You don't know what inside and object
+            You don't know what inside and object,
+            so just make sure every part of your function or interface work
+            with correspond
           </aside>
         </section>
 
@@ -299,26 +312,278 @@
           <small>/* Still work in progress */</small>
 
 					<aside class="notes">
-            functionalities work without problem
+            functionalists work without problem
             <br>
             don't have concrete detail of interface and use case
           </aside>
         </section>
 
         <section>
+          <h2>Second</h2>
+          <b><a target="_blank" href="https://www.github.com/mozilla-b2g/mozbench">mozbench</a></b>
+          <br>
+          A benchmark framework for browser
+
+          <aside class="notes">
+            tell the improvements you do
+            <ul>
+              <li>json format</li>
+              <li>random port</li>
+              <li>b2g version</li>
+              <li>fennec version</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>How it works</h3>
+          <p>create a file which tells mozbench what to run</p>
+          <p>V</p>
+          <p>run mozbench with desired options</p>
+          <p>V</p>
+          <p>post data to Mountain View</p>
+          <p>V</p>
+          <p>visualization with <a target="_blank" href="http://grafana.org/">Grafana</a></p>
+          <br>
+          <h4 class="fragment">automated by <a href="http://jenkins-ci.org/">Jenkins</a>!!</h4>
+
+          <aside class="notes">
+            from fresh flash to post data
+          </aside>
+        </section>
+
+        <section>
+          <h3>The file</h3>
+          <pre><code class="json">
+[
+  {"suite": "webaudio-padenot",
+   "url": "webaudio-benchmark/index.html",
+   "number_of_runs": 5,
+   "timeout": 1200,
+   "enabled": ["linux", "b2g", "android"],
+   "name": "name",
+   "value": "duration"
+  },
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Run mozbench</h3>
+          <pre><code>
+$ python mozbench.py --run-b2g --post-result
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Visualization</h3>
+          <iframe width="100%" height="555" src="https://raptor.mozilla.org/dashboard/script/benchmarks"></iframe>
+
+          <aside class="notes">
+            Visualization is a good way to see:
+            <ul>
+              <li>performance change</li>
+              <li>benchmarks stability</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Third</h2>
+          <b><a target="_blank" href="https://github.com/TheKK/SimpleWebBenchmarks/tree/gh-pages">SimpleBenchmark</a></b>
+          <br>
+          A set of relative light wight benchmarks focus on graphics related performance
+
+          <aside class="notes">
+            I didn't see much browser benchmarks about graphics except Unity benchmarks,
+            but it's quite heavy and contain too much topics in single benchmarks.
+            <br>
+            SimpleBenchmarks try to avoid side effect in its best.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Demo time</h2>
+
+          <aside class="notes">
+            Use local version
+          </aside>
+        </section>
+
+        <section>
           <h1>Kind of serious part</h1>
+
+          <aside class="notes">
+            Here, I'd like to share some works I've done that might slightly out of topic,
+            but still important, at least to me.
+          </aside>
+        </section>
+
+        <section>
+          <h2>First, and the only one</h2>
+          <b><a href="https://github.com/TheKK/jijidinbendon">JiJiDinBenDon</a></b>
+          <br>
+          Have lunch everyday!!
+        </section>
+
+        <section>
+          <h3>I'm too dumb and too lazy to remember it</h3>
+          <br>
+          <p>use crontab to run automatically</p>
+          <p>V</p>
+          <p>choose lunch randomly everyday</p>
+        </section>
+
+        <section>
+          <h3>Features</h3
+          <ul>
+            <li>interactive mode</li>
+            <li>command mode</li>
+            <li>supports cookies</li>
+            <li>easy to extend</li>
+            <li>desktop notification (GNU/Linux only)</li>
+            <li>share with you friends on Facebook(wip)</li>
+          </ul>
+
+          <aside class="notes">
+            That's cool because this is my first web crawler, and it's pretty useful tool for me!
+          </aside>
+        </section>
+
+        <section>
+          <h2>Demo time</h2>
+
+          <aside class="notes">
+            <ul>
+              <li>interactive mode</li>
+              <li>command mode (notify and random)</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Bad news</h3>
+          <br>
+          <p>
+            It's <b>useless</b> now...
+          </p>
         </section>
 
         <section>
           <h1>Totally not serious part</h1>
+
+          <aside class="notes">
+            Here we go, boy!
+          </aside>
+        </section>
+
+        <section>
+          <h3>I used to be an <b>vimmer</b> like some of you, then I took an arrow in the knee</h3>
+          <div class="fragment">
+            <img src="internFinal/spacemacs.png" />
+            <br>
+            <h4>the <b><a href="https://github.com/syl20bnr/spacemacs">arrow</a></b></h4>
+          </div>
+
+          <aside class="notes">
+            I used Vim for coding for about two years, then I found emacs to solve some of my problem.
+            like Ctrl-P and Unite, works not good enough for me.
+          </aside>
+        </section>
+
+        <section>
+          <h3>What's inside</h3>
+          <br>
+          <ul>
+            <li>Evil mode (move cursor like Vim)</li>
+            <li><a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a></li>
+            <li><a href="https://github.com/abo-abo/avy">avy</a> (like easy-motion for Vim)</li>
+            <li><a href="https://github.com/bbatsov/projectile">projectile</a></li>
+            <li>Built-in customization menu</li>
+            <li>Lots of them</li>
+          </ul>
+
+          <aside class="notes">
+            don't talk too much, just show it
+          </aside>
+        </section>
+
+        <section>
+          <h2>Quick demo</h2>
+
+          <aside class="notes">
+            Let's show
+            <ul>
+              <li>Evil mode</li>
+              <li>avy move</li>
+              <li>projectile (project, buffer, file)</li>
+              <li>YCM</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h1>Conclusion</h1>
+
+          <aside class="notes">
+            time to make some conclusion
+          </aside>
         </section>
 
         <section>
-          <h1>Thanks for</h1>
+          <h3>What I expected before internship</h3>
+          <ul class="fragment">
+            <li>to know how it feel to work</li>
+            <li>to know how much can I do</li>
+            <li>to know what skill I'm missing</li>
+            <li>I should <b>at least</b> use some C++</li>
+          </ul>
+
+          <aside class="notes">
+            There's lots of interesting issue about programming, but I'm can't find them in school.
+            Like testing technique, cooperation skill.
+          </aside>
+        </section>
+
+        <section>
+          <h3>What I've got after internship</h3>
+          <ul class="fragment">
+            <li>JavaScript, JavaScript everywhere!</li>
+            <ul>
+              <li>node.js</li>
+              <li>mocha testing framework</li>
+              <li>how to use callback properly in my own project</li>
+            </ul>
+            <li>learn lots of designs from Mozilla project</li>
+            <ul>
+              <li>RDP</li>
+              <li>marionette</li>
+              <li>mochitest</li>
+            </ul>
+            <li>developing technique</li>
+            <li>knowledge and attractive part of web platform</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Unexpected stuffs</h3>
+          <ul class="fragment">
+            <li>known CTF (thanks, Kinder!)</li>
+            <li>emacs</li>
+            <li>sent RPs to <b><a href="http://www.aseprite.org/">aseprite</a></b></li>
+              <ul>
+                <li>and being one of collaborators!</li>
+              </ul>
+            <li class="fragment">gained some weight</li>
+          </ul>
+
+          <aside class="notes">
+            I never though about learning subject about security issue.
+          </aside>
+        </section>
+
+        <section>
+          <h1>That's all</h1>
+          <h1>Thanks ]:)</h1>
         </section>
 
       </div> <!-- <div class="slides"> -->
@@ -354,7 +619,10 @@
      Reveal.configure({
        keyboard: {
          '76': 'next', // go to the next slide when the ENTER key is pressed
-         '72': 'prev'
+         '72': 'prev',
+         '71': function() {
+           alert("Time to speed up!!");
+         }
        }
      });
     </script>
