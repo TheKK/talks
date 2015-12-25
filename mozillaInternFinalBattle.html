@@ -84,8 +84,8 @@
           <br>
           <ul>
             <li>serious part</li>
-            <li>kind of serious part</li>
-            <li>totally not serious part</li>
+            <li>if (<b>weHaveTime</b>()) kind of serious part</li>
+            <li>if (<b>weHaveTime</b>()) totally not serious part</li>
             <li>conclusion</li>
           </ul>
 
@@ -106,9 +106,9 @@
         </section>
 
         <section>
-          <h3>What a game developer want to know</h3>
+          <h3>What a game developer wants to know</h3>
           <ul class="fragment">
-            <li>CPU V.S GPU time</li>
+            <li>CPU v.s GPU time</li>
             <li>draw calls used in single frame</li>
             <li>WebGL resources usage and state</li>
           </ul>
@@ -118,16 +118,12 @@
             <hr>
             draw call may be redundant
             <hr>
-            WebGL, know if things works as we expect
+            WebGL, know if things works as we expect. texture resolution, buffer size...
 					</aside>
         </section>
 
         <section>
-          <h3>Actually</h3>
-          <p>
-            We can already achieve some of them now
-          </p>
-          <hr>
+          <h3>In fact</h3>
           <p>
             "CPU V.S GPU time" >> <b>performance debugger</b>
           </p>
@@ -137,9 +133,11 @@
           <p>
             "WebGL resources usage and state" >> <b>shader debugger</b>
           </p>
-          <p>
-            >> <b>memory debugger</b>
-          </p>
+
+          <aside class="notes">
+            You can find corresponded tool for each requirement.
+            And here's comes the problem.
+          </aside>
         </section>
 
         <section>
@@ -209,6 +207,11 @@
           <h3>Remote Debugger Protocol</h3>
           <img src="internFinal/rdp.png" width="80%"/>
           <p class="fragment">It's <b>client/server</b> architecture!</p>
+
+          <aside class="notes">
+            This looks usual, but it's not.
+            The fun fact is that this is client/server!
+          </aside>
         </section>
 
         <section>
@@ -218,7 +221,7 @@
           <img src="internFinal/rdp_client.png" />
 
           <aside class="notes">
-            webIDE
+            That why we can debug remote runtimes like Firefox OS.
           </aside>
         </section>
 
@@ -234,6 +237,11 @@
             <br>
             { "to":actor, "type":type, ... }
           </blockquote>
+          <p>from <a target="_blank" href="https://wiki.mozilla.org/Remote_Debugging_Protocol">mozilla wiki</a>
+
+          <aside class="notes">
+
+          </aside>
         </section>
 
         <section>
@@ -247,34 +255,40 @@
         <section>
           <h3>Life should be easier</h3>
           <p>
-            Hi, I'm <b><a href=""https://mxr.mozilla.org/mozilla-central/source/devtools/server/protocol.js?force=1>protocol.js</a></b>
+            Hi, I'm <a href=""https://mxr.mozilla.org/mozilla-central/source/devtools/server/protocol.js?force=1>protocol.js</a>
             , your best friend!
           </p>
           <pre><code class="javascript">
-  var WebGLActor = exports.WebGLActor = protocol.ActorClass({
-    typeName: "webgl",
-  ...
-  setup: method(function({ reload }) {
-    if (this._initialized) {
-      return;
+// The actor
+let HelloActor = protocol.ActorClass({
+    typeName: "helloWorld",
+    initialize: function(conn) {
+        protocol.Actor.prototype.initialize.call(this, conn);
+    },
+
+    sayHello: method(function() {
+       return "hello";
+    }, {
+      request: {},
+      response: {
+        greeting: RetVal("string")
+      }
     }
-    this._initialized = true;
+});
 
-    this._programActorsCache = [];
-    this._webglObserver = new WebGLObserver();
-
-    on(this.tabActor, "window-ready", this._onGlobalCreated);
-    on(this.tabActor, "window-destroyed", this._onGlobalDestroyed);
-    on(this._webglObserver, "program-linked", this._onProgramLinked);
-
-    if (reload) {
-      this.tabActor.window.location.reload();
-    }
-  }, {
-    request: { reload: Option(0, "boolean") },
-    oneway: true
-  }),
+// The front
+let HelloFront = protocol.FrontClass(HelloActor, {
+  initialize: function(client, form) {
+    protocol.Front.prototype.initialize.call(this, client, form);
+  }
+});
           </code></pre>
+          <p>check out the <a href="https://mxr.mozilla.org/mozilla-central/source/devtools/server/docs/protocol.js.md">document</a> for <b>protocol.js</b></p>
+
+          <aside class="notes">
+            protocol.js save lots of time to create function you want. Now you don't have to maintain
+            two codebases, and you don't even have to know what's the magic behind. It's great!
+          </aside>
         </section>
 
         <section>
@@ -392,7 +406,7 @@ $ python mozbench.py --run-b2g --post-result
           <h2>Third</h2>
           <b><a target="_blank" href="https://github.com/TheKK/SimpleWebBenchmarks/tree/gh-pages">SimpleBenchmark</a></b>
           <br>
-          A set of relative light wight benchmarks focuses on graphics related performance
+          A set of relative light weight benchmarks focuses on graphics related performance
 
           <aside class="notes">
             I didn't see much browser benchmarks about graphics except Unity benchmarks,
